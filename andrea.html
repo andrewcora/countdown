@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuenta regresiva al 1 de noviembre</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    #countdown {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #007bff;
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    span {
+      color: #212529;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cuenta regresiva para que Andrea regrese a León 🦁</h1>
+  <div id="countdown">Calculando...</div>
+
+  <script>
+    const targetDate = new Date("Nov 1, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "🎉 ¡Ya llegó el 1 de noviembre de 2025! 🎉";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `<span>${days}</span> días, <span>${hours}</span> horas, 
+         <span>${minutes}</span> minutos, <span>${seconds}</span> segundos`;
+    }
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
